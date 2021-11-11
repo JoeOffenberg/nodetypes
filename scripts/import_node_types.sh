@@ -301,7 +301,7 @@ function get_type_attribute() {
 
 	if [ -n "${name}" ]; then
 		# Get attribute ID based on its name
-		attr_id=$(echo ${res} | jq --arg attr_name ${name} '.entities[].properties | select(.identifierKey|index($attr_name)) | .id')
+		attr_id=$(echo ${res} | jq --arg attr_name ${name} '.entities[].properties | select(.identifierKey == ($attr_name)) | .id')
 	else
 		# Return list of existing attributes names
 		attr_id=$(echo ${res} | jq '.entities[].properties.identifierKey')
